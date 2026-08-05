@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Bereken de kosten voor extra opslagcapaciteit." />
+  <title>Stash Upgrade | LS Properties</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <img class="brand-logo" src="assets/ls-properties-logo.png" alt="LS Properties" />
+    <h1>Stash Upgrade</h1>
+    <p>Bereken de kosten voor extra opslagcapaciteit.</p>
+  </header>
+
+  <main class="page-shell">
+    <section class="calculator" aria-label="Stash upgrade calculator">
+      <div class="panel input-panel">
+        <h2>Invoer</h2>
+
+        <label for="currentKg">Huidige KG</label>
+        <input id="currentKg" name="currentKg" type="number" min="0" step="1" value="400" inputmode="numeric" />
+
+        <label for="desiredKg">Gewenste KG</label>
+        <input id="desiredKg" name="desiredKg" type="number" min="0" step="1" value="1000" inputmode="numeric" />
+
+        <label for="pricePer100">Prijs per 100kg (€)</label>
+        <input id="pricePer100" name="pricePer100" type="number" min="0" step="1" value="5000" inputmode="decimal" />
+
+        <label for="summary">Samenvatting</label>
+        <textarea id="summary" readonly aria-live="polite"></textarea>
+
+        <div class="button-row">
+          <button id="copyButton" type="button">Kopieer</button>
+          <button id="resetButton" type="button">Reset</button>
+        </div>
+
+        <a class="dashboard-link" href="../">⬅️ Terug naar Dashboard</a>
+      </div>
+
+      <aside class="panel result-panel" aria-live="polite">
+        <h2>Berekening</h2>
+
+        <dl class="result-list">
+          <div>
+            <dt>Extra KG aan te kopen</dt>
+            <dd id="extraKg">600 kg</dd>
+          </div>
+          <div>
+            <dt>Kosten per 100kg</dt>
+            <dd id="priceDisplay">€ 5.000</dd>
+          </div>
+        </dl>
+
+        <div class="total-card">
+          <span>TOTAALPRIJS UPGRADE</span>
+          <strong id="totalPrice">€ 30.000</strong>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

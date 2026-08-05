@@ -7,15 +7,15 @@ const SHELLS = {
 };
 
 const GARDENS = {
-  none: { name: "Geen tuin", price: 0 },
-  small: { name: "Kleine tuin", price: 10000 },
-  small: { name: "Kleine tuin met zwembad", price: 25000 },
-  middle: { name: "Middel tuin", price: 15000 },
-  middle: { name: "Middel tuin met zwembad", price: 15000 },
-  large: { name: "Grote tuin", price: 15000 },
-  large: { name: "Grote tuin met zwembad", price: 15000 },
-  big: { name: "Hele grote tuin", price: 15000 },
-  big: { name: "Hele grote tuin met alles", price: 15000 }
+  1: { name: "Geen tuin", price: 0 },
+  2: { name: "Kleine tuin", price: 10000 },
+  3: { name: "Kleine tuin met zwembad", price: 25000 },
+  4: { name: "Middel tuin", price: 15000 },
+  5: { name: "Middel tuin met zwembad", price: 15000 },
+  6: { name: "Grote tuin", price: 15000 },
+  7: { name: "Grote tuin met zwembad", price: 15000 },
+  8: { name: "Hele grote tuin", price: 15000 },
+  9: { name: "Hele grote tuin met alles", price: 15000 }
 };
 
 const LOCATIONS = {

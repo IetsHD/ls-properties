@@ -3,18 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bezichtiging Shells | LS Properties</title>
-  <style>
-    *{box-sizing:border-box}body{min-height:100vh;margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;display:grid;place-items:center;padding:24px}.box{width:min(100%,620px);background:#11192c;border:1px solid #2b354a;border-radius:20px;padding:42px;text-align:center}.logo{width:180px;height:130px;object-fit:contain}.icon{font-size:62px;margin:14px 0}h1{margin:0 0 12px;text-shadow:-1px 0 rgba(52,189,255,.45),1px 0 rgba(255,132,55,.38)}p{color:#b9c5db;margin:0 0 28px}.back{display:inline-block;padding:12px 18px;border:1px solid #e2b91f;border-radius:10px;color:#fff;text-decoration:none;background:#171f30}.back:hover{background:#e2b91f;color:#0b0d12}
-  </style>
+  <meta name="theme-color" content="#000000">
+  <title>Shell bezichtiging | LS Properties</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="box">
-    <img class="logo" src="../assets/ls-properties-logo.png" alt="LS Properties logo">
-    <div class="icon" aria-hidden="true">🏠</div>
-    <h1>Bezichtiging Shells</h1>
-    <p>Deze tool kan later aan dit dashboard worden toegevoegd.</p>
-    <a class="back" href="../">← Terug naar dashboard</a>
+  <header class="hero">
+    <img class="logo" src="../assets/ls-properties-logo.png" alt="LS Properties">
+    <h1>Shell bezichtiging</h1>
+    <p>bekijk shells in preview</p>
+  </header>
+
+  <main class="page-shell">
+    <a class="back-link" href="../index.html">← Terug naar Dashboard</a>
+
+    <section class="intro" aria-labelledby="shell-title">
+      <h2 id="shell-title">Bezichtiging Shells</h2>
+      <p>Gebruik de filters om een shell te vinden die bij je past.</p>
+    </section>
+
+    <section class="filter-card" aria-label="Filters">
+      <label for="floorFilter">VERDIEPINGEN</label>
+      <select id="floorFilter">
+        <option value="all">Alle verdiepingen</option>
+        <option value="1">1 verdieping</option>
+        <option value="2">2 verdiepingen</option>
+      </select>
+    </section>
+
+    <section id="shellGrid" class="shell-grid" aria-live="polite"></section>
+    <p id="emptyState" class="empty-state" hidden>Geen shells gevonden met dit filter.</p>
   </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

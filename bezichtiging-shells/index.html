@@ -36,6 +36,16 @@
     <p id="emptyState" class="empty-state" hidden>Geen shells gevonden met dit filter.</p>
   </main>
 
+  <div id="lightbox" class="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Vergrote shell afbeelding">
+    <button id="lightboxClose" class="lightbox-close" type="button" aria-label="Sluiten">×</button>
+    <button id="lightboxPrev" class="lightbox-nav lightbox-prev" type="button" aria-label="Vorige foto">‹</button>
+    <figure class="lightbox-content">
+      <img id="lightboxImage" class="lightbox-image" src="" alt="">
+      <figcaption id="lightboxCaption" class="lightbox-caption"></figcaption>
+    </figure>
+    <button id="lightboxNext" class="lightbox-nav lightbox-next" type="button" aria-label="Volgende foto">›</button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

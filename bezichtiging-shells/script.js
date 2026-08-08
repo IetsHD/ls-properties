@@ -3,25 +3,26 @@ const shells = [
     title: 'Kleine Loods',
     floors: 1,
     price: 35000,
-    images: ['assets/shells/kleine-loods.jpg']
+    images: ['assets/shells/Kleine_Loods.png']
   },
   {
     title: 'Middel Loods',
     floors: 1,
     price: 75000,
     images: [
-      'assets/shells/middel-loods.jpg',
-      'assets/shells/middel-loods.jpg',
-      'assets/shells/middel-loods.jpg'
+      'assets/shells/Middel_Loods_1.png',
+      'assets/shells/Middel_Loods_2.png',
+      'assets/shells/Middel_Loods_3.png'
     ]
   },
   {
-    title: 'Grote Loods',
+    title: 'Grote Loods met kelder',
     floors: 2,
     price: 100000,
     images: [
-      'assets/shells/grote-loods.jpg',
-      'assets/shells/grote-loods.jpg'
+      'assets/shells/Grootte_Loods_Kelder.png',
+      'assets/shells/Grootte_Loods_Kelder_2.png',
+      'assets/shells/Grootte_Loods_Kelder_3.png'
     ]
   },
   {

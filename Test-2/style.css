@@ -1,0 +1,621 @@
+/* =========================================================
+   LS PROPERTIES — Aankoop configurator
+   Palette:  void #08090c · panel #12151c · line #232838
+             gold #c9a24a · gold-bright #e7c876
+             ink #eee7d6 · muted #8892a6 · danger #c1594f
+   Type:     Fraunces (display) · Inter (ui) · IBM Plex Mono (data)
+   ========================================================= */
+
+:root{
+  --void: #08090c;
+  --void-soft: #0d0f14;
+  --panel: #12151c;
+  --panel-raised: #171b24;
+  --line: #232838;
+  --line-soft: #1a1e2a;
+  --gold: #c9a24a;
+  --gold-bright: #e7c876;
+  --gold-dim: #6b5827;
+  --ink: #eee7d6;
+  --ink-soft: #cbc4b3;
+  --muted: #8892a6;
+  --muted-dim: #565f72;
+  --danger: #c1594f;
+  --danger-bg: rgba(193,89,79,0.1);
+
+  --font-display: 'Fraunces', serif;
+  --font-ui: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* subtle film-grain / vignette so the black doesn't go flat */
+.grain{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(201,162,74,0.07), transparent 60%),
+    radial-gradient(ellipse 1200px 800px at 50% 110%, rgba(201,162,74,0.04), transparent 60%);
+}
+
+a{ color: inherit; }
+
+::selection{ background: var(--gold); color: var(--void); }
+
+/* focus visibility */
+:focus-visible{
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------------------------------------------------------
+   Header
+--------------------------------------------------------- */
+.site-header{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 34px 24px 20px;
+  flex-wrap: wrap;
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark{
+  width: 30px;
+  height: 34px;
+  color: var(--gold);
+}
+
+.brand-name{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.brand-tag{
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-dim);
+  border-left: 1px solid var(--line);
+  padding-left: 14px;
+}
+
+@media (max-width: 560px){
+  .brand-tag{ border-left: none; padding-left: 0; }
+}
+
+/* ---------------------------------------------------------
+   Hero
+--------------------------------------------------------- */
+.hero{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 10px 24px 44px;
+  animation: hero-in 700ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes hero-in{
+  from{ opacity: 0; transform: translateY(10px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow{
+  margin: 0 0 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero h1{
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  letter-spacing: -0.01em;
+}
+
+.hero-sub{
+  margin: 0 auto;
+  max-width: 480px;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.hero-link{
+  display: inline-block;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 2px;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+.hero-link:hover{ color: var(--gold-bright); border-color: var(--gold-bright); }
+
+/* ---------------------------------------------------------
+   Layout
+--------------------------------------------------------- */
+.configurator{
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 900px){
+  .configurator{ grid-template-columns: 1fr; }
+}
+
+.panel{
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+.panel h2{
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 26px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.panel-index{
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.05em;
+}
+
+/* ---------------------------------------------------------
+   Form fields
+--------------------------------------------------------- */
+.field{ margin-bottom: 26px; }
+.field:last-child{ margin-bottom: 0; }
+
+.field > label,
+.field > .checkbox-label{
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.sub-label{
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.select-wrap{
+  position: relative;
+}
+
+.select-wrap::after{
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid var(--muted);
+  border-bottom: 1.5px solid var(--muted);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+select, input[type="number"]{
+  width: 100%;
+  appearance: none;
+  background: var(--void-soft);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 0.96rem;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+select:hover, input[type="number"]:hover{ border-color: var(--muted-dim); }
+select:focus, input[type="number"]:focus{
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,162,74,0.12);
+  outline: none;
+}
+
+/* pill group — locatie klasse */
+.pill-group{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill{
+  flex: 1 1 auto;
+  min-width: 58px;
+  background: var(--void-soft);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 12px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease, color 150ms ease, transform 100ms ease;
+}
+
+.pill:hover{ border-color: var(--muted-dim); }
+.pill:active{ transform: translateY(1px); }
+
+.pill.active{
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  border-color: var(--gold);
+  color: var(--void);
+  font-weight: 700;
+}
+
+.hint{
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* stars — afwerking niveau */
+.stars{
+  display: flex;
+  gap: 6px;
+}
+
+.star-btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--line);
+  transition: color 150ms ease, transform 120ms ease;
+}
+
+.star-btn svg{ width: 26px; height: 26px; display: block; }
+
+.star-btn:hover{ transform: scale(1.08); }
+.star-btn.filled{ color: var(--gold); }
+
+/* checkbox */
+.checkbox-label{
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  color: var(--ink) !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-size: 0.96rem !important;
+  font-weight: 500 !important;
+}
+
+.checkbox-label input{ position: absolute; opacity: 0; width: 0; height: 0; }
+
+.checkbox-box{
+  width: 20px;
+  height: 20px;
+  flex: none;
+  border: 1.5px solid var(--line);
+  border-radius: 5px;
+  background: var(--void-soft);
+  position: relative;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.checkbox-box::after{
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border-right: 2px solid var(--void);
+  border-bottom: 2px solid var(--void);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.checkbox-label input:checked + .checkbox-box{
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.checkbox-label input:checked + .checkbox-box::after{ opacity: 1; }
+.checkbox-label input:focus-visible + .checkbox-box{
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+.stash-input-wrap{
+  margin-top: 16px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 220ms ease, opacity 220ms ease;
+}
+
+.stash-input-wrap.open{
+  max-height: 100px;
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   Offerte card
+--------------------------------------------------------- */
+.offerte-card{
+  position: relative;
+  background: var(--void-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 20px 20px 20px 24px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.offerte-seal{
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  color: var(--gold-dim);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.offerte-seal svg{ width: 100%; height: 100%; }
+.offerte-seal circle{ fill: none; stroke: currentColor; stroke-width: 1.2; }
+.offerte-seal text{
+  fill: currentColor;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.offerte-text{
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.offerte-text .ot-title{ color: var(--gold-bright); font-weight: 600; }
+.offerte-text .ot-head{ color: var(--gold); }
+
+/* ---------------------------------------------------------
+   Buttons
+--------------------------------------------------------- */
+.action-row{
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.btn{
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 100ms ease, filter 150ms ease, background 150ms ease, border-color 150ms ease;
+  flex: 1 1 auto;
+}
+
+.btn:active{ transform: translateY(1px); }
+
+.btn-gold{
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  color: var(--void);
+}
+.btn-gold:hover{ filter: brightness(1.08); }
+
+.btn-ghost{
+  background: transparent;
+  border-color: var(--line);
+  color: var(--muted);
+}
+.btn-ghost:hover{ border-color: var(--muted-dim); color: var(--ink); }
+
+.btn-outline-gold{
+  width: 100%;
+  background: transparent;
+  border-color: var(--gold-dim);
+  color: var(--gold);
+  margin: 6px 0 4px;
+}
+.btn-outline-gold:hover{ background: rgba(201,162,74,0.08); border-color: var(--gold); }
+.btn-outline-gold.active{
+  background: rgba(201,162,74,0.14);
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+.copy-confirm{
+  margin: 10px 2px 0;
+  font-size: 0.8rem;
+  color: var(--gold);
+  height: 1em;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.copy-confirm.show{ opacity: 1; }
+
+/* ---------------------------------------------------------
+   Kostenoverzicht
+--------------------------------------------------------- */
+.cost-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.cost-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.cost-row:first-child{ padding-top: 0; }
+
+.cost-row-sub{ padding-top: 0; padding-bottom: 15px; }
+
+.cost-label{
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.cost-value{
+  font-family: var(--font-mono);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink);
+  transition: color 200ms ease;
+}
+
+.cost-value-sub{
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--gold-dim);
+}
+
+.cost-value-negative{ color: var(--danger); }
+
+.discount-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: var(--danger-bg);
+  border: 1px solid rgba(193,89,79,0.3);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-top: 4px;
+  animation: row-in 220ms ease both;
+}
+
+@keyframes row-in{
+  from{ opacity: 0; transform: translateY(-4px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.total-box{
+  margin-top: 18px;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-sm);
+  padding: 20px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: linear-gradient(180deg, rgba(201,162,74,0.08), transparent);
+}
+
+.total-label{
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.total-value{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.7rem;
+  color: var(--gold-bright);
+}
+
+.disclaimer{
+  margin: 20px 0 0;
+  font-size: 0.74rem;
+  line-height: 1.6;
+  color: var(--muted-dim);
+}
+
+/* ---------------------------------------------------------
+   Footer
+--------------------------------------------------------- */
+.site-footer{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 30px 24px 50px;
+  font-size: 0.78rem;
+  color: var(--muted-dim);
+  border-top: 1px solid var(--line-soft);
+}
+
+/* scrollbar polish for the offerte card */
+.offerte-card::-webkit-scrollbar{ width: 8px; }
+.offerte-card::-webkit-scrollbar-track{ background: transparent; }
+.offerte-card::-webkit-scrollbar-thumb{ background: var(--line); border-radius: 4px; }
+.offerte-card::-webkit-scrollbar-thumb:hover{ background: var(--muted-dim); }

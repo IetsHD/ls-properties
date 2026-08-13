@@ -15,9 +15,14 @@ const CONFIG = {
   ],
   gardens: [
     { id: "none",   label: "Geen tuin",             price: 0 },
-    { id: "small",  label: "Kleine tuin",            price: 5000 },
-    { id: "large",  label: "Grote tuin",             price: 12000 },
-    { id: "pool",   label: "Tuin met zwembad",       price: 30000 },
+    { id: "S",  label: "Kleine tuin",            price: 10000 },
+    { id: "SP",  label: "Kleine tuin met zwembad",             price: 25000 },
+    { id: "M",   label: "Middel tuin",       price: 30000 },
+    { id: "MP",   label: "Middel tuin met zwembad",       price: 50000 },
+    { id: "G",   label: "Grote tuin",       price: 75000 },
+    { id: "GP",   label: "Grote tuin met zwembad",       price: 100000 },
+    { id: "Big",   label: "Hele grote tuin",       price: 150000 },
+    { id: "All",   label: "Hele grote tuin met alles",       price: 200000 },
   ],
   locationClasses: [
     { id: "K5", label: "K5", desc: "Klasse 5: Achterbuurt",      pct: 0 },

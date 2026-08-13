@@ -74,7 +74,7 @@ function buildOptions(){
   CONFIG.shells.forEach(s => {
     const opt = document.createElement("option");
     opt.value = s.id;
-    opt.textContent = `${s.label} (${fmt(s.price)} · ${s.stashBaseKg} kg stash)`;
+    opt.textContent = `${s.label} (${fmt(s.price)} · ${s.stashBaseKg} kg)`;
     shellSelect.appendChild(opt);
   });
 

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LS Properties — Aankoop eigendom</title>
+<meta name="description" content="Configureer uw eigendom en ontvang direct een offerte op maat.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <svg class="brand-mark" viewBox="0 0 48 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M24 1L45 10V26C45 39 36 48.5 24 53C12 48.5 3 39 3 26V10L24 1Z" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M24 8L38 14V26C38 35.5 32 42.5 24 46C16 42.5 10 35.5 10 26V14L24 8Z" stroke="currentColor" stroke-width="1"/>
+      <text x="24" y="30" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="600" fill="currentColor">LS</text>
+    </svg>
+    <span class="brand-name">LS&nbsp;Properties</span>
+  </a>
+  <span class="brand-tag">Makelaardij &amp; Eigendomsbeheer</span>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">Configurator</p>
+  <h1>Aankoop eigendom</h1>
+  <p class="hero-sub">Stel uw woning samen, kies uw locatie en afwerking, en ontvang meteen een officiële offerte.</p>
+  <a class="hero-link" href="gallery.html">Bekijk shells in preview &rarr;</a>
+</section>
+
+<main class="configurator">
+
+  <a class="back-link back-link-top" href="index.html">&larr; Terug naar Dashboard</a>
+
+  <!-- ===================== SELECTIE ===================== -->
+  <section class="panel selection-panel" aria-labelledby="selectie-title">
+    <h2 id="selectie-title"><span class="panel-index">01</span>Selectie</h2>
+
+    <div class="field">
+      <label for="shell">Shell</label>
+      <div class="select-wrap">
+        <select id="shell"></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="garden">Tuin</label>
+      <div class="select-wrap">
+        <select id="garden"></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Locatie klasse</label>
+      <div class="pill-group" id="locationGroup" role="group" aria-label="Locatie klasse"></div>
+      <p class="hint" id="locationHint"></p>
+    </div>
+
+    <div class="field">
+      <label>Afwerking niveau</label>
+      <div class="stars" id="finishStars" role="group" aria-label="Afwerking niveau"></div>
+      <p class="hint" id="finishHint"></p>
+    </div>
+
+    <div class="field stash-field">
+      <label class="checkbox-label">
+        <input type="checkbox" id="stashToggle">
+        <span class="checkbox-box"></span>
+        Stashverhoging toevoegen?
+      </label>
+      <p class="hint" id="stashBaseHint"></p>
+      <div class="stash-input-wrap" id="stashInputWrap">
+        <label for="stashKg" class="sub-label">Gewenste totale kg (max <span id="stashMax"></span>)</label>
+        <input type="number" id="stashKg" min="0" step="10">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Concept offerte</label>
+      <div class="offerte-card" id="offerteCard">
+        <div class="offerte-seal" aria-hidden="true">
+          <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27"/><text x="30" y="35" text-anchor="middle">LS</text></svg>
+        </div>
+        <pre class="offerte-text" id="offerteText"></pre>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-gold" id="copyBtn">Kopieer offerte</button>
+      <button class="btn btn-ghost" id="resetBtn">Reset</button>
+    </div>
+    <p class="copy-confirm" id="copyConfirm" aria-live="polite"></p>
+  </section>
+
+  <!-- ===================== KOSTENOVERZICHT ===================== -->
+  <aside class="panel summary-panel" aria-labelledby="summary-title">
+    <h2 id="summary-title"><span class="panel-index">02</span>Kostenoverzicht</h2>
+
+    <div class="cost-list">
+      <div class="cost-row">
+        <span class="cost-label">Huisprijs</span>
+        <span class="cost-value" id="valShell">€ 0</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-label">Tuinprijs</span>
+        <span class="cost-value" id="valGarden">€ 0</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-label">Locatie toeslag</span>
+        <span class="cost-value" id="valLocation">€ 0</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-label">Luxe afwerking</span>
+        <span class="cost-value" id="valFinish">€ 0</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-label">Stash (basis / extra)</span>
+        <span class="cost-value" id="valStashKg">200 kg / +0 kg</span>
+      </div>
+      <div class="cost-row cost-row-sub">
+        <span class="cost-label">Upgrade kost</span>
+        <span class="cost-value cost-value-sub" id="valStashUpgradeUnit">€ 0</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-label">Stash upgrade totaal</span>
+        <span class="cost-value" id="valStashTotal">€ 0</span>
+      </div>
+    </div>
+
+    <button class="btn btn-outline-gold" id="discountBtn">Pas 10% korting toe</button>
+
+    <div class="discount-row" id="discountRow" hidden>
+      <span class="cost-label">Korting (10% van totaal)</span>
+      <span class="cost-value cost-value-negative" id="valDiscount">− € 0</span>
+    </div>
+
+    <div class="total-box">
+      <span class="total-label">Totaalbedrag</span>
+      <span class="total-value" id="valTotal">€ 0</span>
+    </div>
+
+    <p class="disclaimer">Deze offerte is vrijblijvend en dient ter indicatie. Prijzen kunnen wijzigen op basis van marktomstandigheden.</p>
+  </aside>
+
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> LS Properties — Alle rechten voorbehouden.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

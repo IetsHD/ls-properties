@@ -7,11 +7,11 @@
 
 const CONFIG = {
   shells: [
-    { id: "container",   label: "Container",            price: 10000 },
-    { id: "starter",     label: "Starterswoning",        price: 25000 },
-    { id: "midden",      label: "Middenklasse woning",   price: 50000 },
-    { id: "villa",       label: "Villa",                 price: 120000 },
-    { id: "landhuis",    label: "Landhuis",               price: 250000 },
+    { id: "container",   label: "Container",            price: 10000,  stashBaseKg: 200 },
+    { id: "starter",     label: "Starterswoning",        price: 25000,  stashBaseKg: 400 },
+    { id: "midden",      label: "Middenklasse woning",   price: 50000,  stashBaseKg: 600 },
+    { id: "villa",       label: "Villa",                 price: 120000, stashBaseKg: 1000 },
+    { id: "landhuis",    label: "Landhuis",               price: 250000, stashBaseKg: 1500 },
   ],
   gardens: [
     { id: "none",   label: "Geen tuin",             price: 0 },
@@ -30,7 +30,6 @@ const CONFIG = {
   finishLevels: [0, 15, 30, 50],
   finishNames: ["Standaard afwerking", "Verbeterde afwerking", "Premium afwerking", "Exclusieve afwerking"],
   stash: {
-    baseKg: 200,
     maxKg: 3000,
     pricePerKg: 15,
   },
@@ -70,7 +69,7 @@ function buildOptions(){
   CONFIG.shells.forEach(s => {
     const opt = document.createElement("option");
     opt.value = s.id;
-    opt.textContent = `${s.label} (${fmt(s.price)})`;
+    opt.textContent = `${s.label} (${fmt(s.price)} · ${s.stashBaseKg} kg stash)`;
     shellSelect.appendChild(opt);
   });
 
@@ -132,6 +131,9 @@ function syncControls(){
   const finishPct = CONFIG.finishLevels[state.finishStars];
   $("finishHint").textContent = `${CONFIG.finishNames[state.finishStars]} (${finishPct > 0 ? "+" : ""}${finishPct}%)`;
 
+  const shell = getShell();
+  $("stashBaseHint").textContent = `${shell.label} heeft standaard ${shell.stashBaseKg} kg stash`;
+
   $("stashToggle").checked = state.stashEnabled;
   $("stashInputWrap").classList.toggle("open", state.stashEnabled);
 
@@ -158,8 +160,9 @@ function calculate(){
   const locationSurcharge = subtotal * (loc.pct / 100);
   const finishSurcharge = subtotal * (finishPct / 100);
 
+  const stashBaseKg = shell.stashBaseKg;
   const extraKg = state.stashEnabled
-    ? Math.max(0, Math.min(state.stashKg, CONFIG.stash.maxKg) - CONFIG.stash.baseKg)
+    ? Math.max(0, Math.min(state.stashKg, CONFIG.stash.maxKg) - stashBaseKg)
     : 0;
   const stashUpgradeTotal = extraKg * CONFIG.stash.pricePerKg;
 
@@ -170,7 +173,7 @@ function calculate(){
   return {
     shell, garden, loc, finishPct,
     shellPrice, gardenPrice, locationSurcharge, finishSurcharge,
-    extraKg, stashUpgradeTotal, preDiscountTotal, discountAmount, total,
+    stashBaseKg, extraKg, stashUpgradeTotal, preDiscountTotal, discountAmount, total,
   };
 }
 
@@ -185,7 +188,7 @@ function render(){
   $("valGarden").textContent = fmt(c.gardenPrice);
   $("valLocation").textContent = fmt(c.locationSurcharge);
   $("valFinish").textContent = fmt(c.finishSurcharge);
-  $("valStashKg").textContent = `${CONFIG.stash.baseKg} kg / +${c.extraKg} kg`;
+  $("valStashKg").textContent = `${c.stashBaseKg} kg / +${c.extraKg} kg`;
   $("valStashUpgradeUnit").textContent = fmt(c.stashUpgradeTotal);
   $("valStashTotal").textContent = fmt(c.stashUpgradeTotal);
   $("valDiscount").textContent = `− ${fmt(c.discountAmount)}`;
@@ -206,7 +209,7 @@ function renderOfferte(c){
   lines.push("CONFIGURATIE:");
   lines.push(`• Locatie: ${c.loc.desc} (${c.loc.pct > 0 ? "+" : ""}${c.loc.pct}%)`);
   lines.push(`• Afwerking: ${CONFIG.finishNames[state.finishStars]} (${c.finishPct > 0 ? "+" : ""}${c.finishPct}%)`);
-  lines.push(`• Stash: ${CONFIG.stash.baseKg} kg basis${state.stashEnabled ? ` + ${c.extraKg} kg extra` : ""}`);
+  lines.push(`• Stash: ${c.stashBaseKg} kg basis${state.stashEnabled ? ` + ${c.extraKg} kg extra` : ""}`);
   lines.push("");
   lines.push("KOSTEN:");
   lines.push(`• Locatie toeslag: ${fmt(c.locationSurcharge)}`);

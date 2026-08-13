@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LS Properties — Stash Upgrade</title>
+<meta name="description" content="Bereken de kosten voor extra opslagcapaciteit.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="stash.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="site-header">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 48 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M24 1L45 10V26C45 39 36 48.5 24 53C12 48.5 3 39 3 26V10L24 1Z" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M24 8L38 14V26C38 35.5 32 42.5 24 46C16 42.5 10 35.5 10 26V14L24 8Z" stroke="currentColor" stroke-width="1"/>
+      <text x="24" y="30" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="600" fill="currentColor">LS</text>
+    </svg>
+    <span class="brand-name">LS&nbsp;Properties</span>
+  </div>
+  <span class="brand-tag">Makelaardij &amp; Eigendomsbeheer</span>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">Calculator</p>
+  <h1>Stash Upgrade</h1>
+  <p class="hero-sub">Bereken de kosten voor extra opslagcapaciteit.</p>
+</section>
+
+<main class="stash-main">
+
+  <section class="panel">
+    <h2><span class="panel-index">01</span>Invoer</h2>
+
+    <div class="field">
+      <label for="currentKg">Huidige kg</label>
+      <input type="number" id="currentKg" min="0" step="10" value="400">
+    </div>
+
+    <div class="field">
+      <label for="desiredKg">Gewenste kg</label>
+      <input type="number" id="desiredKg" min="0" step="10" value="1000">
+    </div>
+
+    <div class="field">
+      <label for="pricePer100">Prijs per 100kg (€)</label>
+      <input type="number" id="pricePer100" min="0" step="50" value="5000">
+    </div>
+
+    <div class="field">
+      <label for="summary">Samenvatting</label>
+      <textarea id="summary" class="summary-box" readonly spellcheck="false"></textarea>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-gold" id="copyBtn">Kopieer</button>
+      <button class="btn btn-ghost" id="resetBtn">Reset</button>
+    </div>
+    <p class="copy-confirm" id="copyConfirm" aria-live="polite"></p>
+
+    <a class="back-link" href="index.html">&larr; Terug naar Dashboard</a>
+  </section>
+
+  <aside class="panel">
+    <h2><span class="panel-index">02</span>Berekening</h2>
+
+    <div class="cost-list">
+      <div class="cost-row">
+        <span class="cost-label">Extra kg aan te kopen</span>
+        <span class="cost-value" id="valExtraKg">0 kg</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-label">Kosten per 100kg</span>
+        <span class="cost-value" id="valPricePer100">€ 0</span>
+      </div>
+    </div>
+
+    <div class="total-box">
+      <span class="total-label">Totaalprijs upgrade</span>
+      <span class="total-value" id="valTotal">€ 0</span>
+    </div>
+  </aside>
+
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> LS Properties — Alle rechten voorbehouden.</p>
+</footer>
+
+<script src="stash.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+/* =========================================================
+   LS PROPERTIES — Stash Upgrade calculator
+   Bouwt voort op de tokens en basisstijlen uit style.css
+   ========================================================= */
+
+.stash-main{
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 90px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 760px){
+  .stash-main{ grid-template-columns: 1fr; }
+}
+
+.summary-box{
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  background: var(--void-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  padding: 16px 18px;
+}
+
+.summary-box:focus{
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,162,74,0.12);
+  outline: none;
+}
+
+.back-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--gold);
+  text-decoration: none;
+  margin-top: 18px;
+  transition: gap 150ms ease, color 150ms ease;
+}
+.back-link:hover{ gap: 10px; color: var(--gold-bright); }

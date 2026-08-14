@@ -222,8 +222,8 @@
 .lightbox[hidden]{ display: none; }
 
 .lb-frame{
-  max-width: min(88vw, 1000px);
-  max-height: 84vh;
+  max-width: min(96vw, 1500px);
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -232,7 +232,7 @@
 
 .lb-image{
   max-width: 100%;
-  max-height: 74vh;
+  max-height: 84vh;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
   filter: grayscale(0.55) contrast(1.05) brightness(0.92);

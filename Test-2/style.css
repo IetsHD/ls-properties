@@ -565,7 +565,7 @@ select:focus, input[type="number"]:focus{
 }
 
 .cost-value-sub{
-  font-size: 0.82rem;
+  font-size: 1.02rem;
   font-weight: 500;
   color: var(--gold-dim);
 }

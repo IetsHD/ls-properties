@@ -12,14 +12,14 @@ const SHELLS = [
     name: "Kleine Loods",
     floors: 1,
     price: 35000,
-    photos: photos: ["assets/Kleine_Loods.png", ],
+    photos: ["assets/Kleine_Loods.png", ],
   },
   {
     id: "middel-loods",
     name: "Middel Loods",
     floors: 1,
     price: 75000,
-    photos: photos: ["assets/Middel_Loods_1.png", "assets/Middel_Loods_2.png", "assets/Middel_Loods_3.png", ],
+    photos: ["assets/Middel_Loods_1.png", "assets/Middel_Loods_2.png", "assets/Middel_Loods_3.png", ],
   },
   {
     id: "grote-loods-kelder",

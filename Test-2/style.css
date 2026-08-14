@@ -549,7 +549,7 @@ select:focus, input[type="number"]:focus{
 
 .cost-row:first-child{ padding-top: 0; }
 
-.cost-row-sub{ padding-top: 0; padding-bottom: 15px; }
+.cost-row-sub{ padding: 15px 0; }
 
 .cost-label{
   font-size: 0.86rem;
